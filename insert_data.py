@@ -40,12 +40,11 @@ def insert_data():
             "INSERT INTO cars (make, model, production_year, price, engine_type) VALUES (%s, %s, %s, %s, %s)",
             (row["Make"], row["Model"], row["Production"], row["Price"], row["Engine"]),
         )
-
     # Insert consumer data
     for _, row in consumer_df.iterrows():
         cur.execute(
             "INSERT INTO consumers (country, model, year, review_score, sales_volume) VALUES (%s, %s, %s, %s, %s)",
-            (row["Country"], row["Model"], row["Year"], row["Review_Score"], row["Sales_Volume"]),
+            (row["Country"], row["Model"], row["Year"], row["Review Score"], row["Sales Volume"]),
         )
 
     conn.commit()
