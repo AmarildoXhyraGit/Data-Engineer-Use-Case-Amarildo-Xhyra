@@ -11,21 +11,29 @@ GROUP BY model, country
 ORDER BY max_sales DESC;
 
 -- c. Models sold in USA but not in France
-SELECT model
-FROM consumers
-WHERE country = 'USA'
-AND model NOT IN (SELECT model FROM consumers WHERE country = 'France');
+SELECT model 
+FROM consumers 
+WHERE country = 'USA' 
+AND model NOT IN (SELECT model FROM consumers WHERE country = 'France') 
+GROUP BY model 
+UNION ALL 
+SELECT 'NAN'
+WHERE NOT EXISTS (
+    SELECT 1 FROM consumers 
+    WHERE country = 'USA' 
+    AND model NOT IN (SELECT model FROM consumers WHERE country = 'France')
+);
 
 -- d. Average car price per country by engine type
 SELECT c.country, car.engine_type, AVG(car.price) AS avg_price
 FROM cars car
-JOIN consumers c ON car.model = c.model
+JOIN consumers c ON car.make = c.model
 GROUP BY c.country, car.engine_type
 ORDER BY avg_price DESC;
 
 -- e. Average ratings of electric vs thermal cars
 SELECT car.engine_type, AVG(c.review_score) AS avg_rating
 FROM cars car
-JOIN consumers c ON car.model = c.model
+JOIN consumers c ON car.make = c.model
 GROUP BY car.engine_type
 ORDER BY avg_rating DESC;
