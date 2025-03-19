@@ -11,7 +11,8 @@ CREATE TABLE consumers (
     id SERIAL PRIMARY KEY,
     country TEXT,
     model TEXT,
+    type TEXT, 
     year INT,
-    review_score FLOAT,
-    sales_volume INT
+    sales_volume INT,
+    review_score FLOAT
 );
