@@ -18,7 +18,7 @@ def connect_db():
 
 # Process consumer data from CSV and prepare data for batch insert, using execute_batch
 def process_consumer_data_for_batch():
-    csv_file_path = os.path.join("consumer_data.csv")
+    csv_file_path = "consumer_data.csv"
     data_to_insert = []
     with open(csv_file_path, 'r') as csvfile:
         reader = csv.reader(csvfile)
