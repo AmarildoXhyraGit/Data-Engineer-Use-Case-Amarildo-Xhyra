@@ -18,7 +18,7 @@ def connect_db():
 
 # Process consumer data from CSV and prepare data for batch insert, using execute_batch
 def process_consumer_data_for_batch():
-    csv_file_path = os.path.join("data", "consumer_data.csv")
+    csv_file_path = os.path.join("consumer_data.csv")
     data_to_insert = []
     with open(csv_file_path, 'r') as csvfile:
         reader = csv.reader(csvfile)
@@ -58,7 +58,7 @@ def clean_car_columns(df):
     df.columns = df.columns.str.replace(r"[^\w\s]", "", regex=True).str.strip()
     return df
 
-car_df = pd.read_csv(os.path.join("data", "car_data.csv"))
+car_df = pd.read_csv("car_data.csv")
 car_df = clean_car_columns(car_df)
 
 def insert_car_data():
