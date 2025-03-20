@@ -43,15 +43,13 @@ def fetch_car_sales_data():
         conn.close()
 
 def generate_sales_graphs(df):
-    """Generates and displays graphs of car sales data from the cars table."""
     if df.empty:
         print("No car sales data found in the cars table to generate graphs.")
         return
-
-    # Group data by year and engine type
+        
     grouped = df.groupby(["production_year", "engine_type"]).agg({"volume": "sum", "value": "sum"}).reset_index()
 
-    # Pivot the table for easier plotting
+    # Pivot for easier plotting
     volume_pivot = grouped.pivot(index="production_year", columns="engine_type", values="volume").fillna(0)
     value_pivot = grouped.pivot(index="production_year", columns="engine_type", values="value").fillna(0)
 
