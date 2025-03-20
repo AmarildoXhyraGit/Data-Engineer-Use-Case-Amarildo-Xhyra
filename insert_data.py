@@ -26,7 +26,7 @@ def clean_car_data():
     car_df = car_df.drop_duplicates(subset=["Make", "Model", "Production"])  
     return car_df
 
-# Batch insert for cars using execute_values (fast)
+# Batch insert for cars using execute_values
 def insert_car_data():
     car_df = clean_car_data()
     conn = connect_db()
