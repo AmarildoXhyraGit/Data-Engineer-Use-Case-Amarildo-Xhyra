@@ -20,10 +20,10 @@ def connect_db():
 # Function to clean and remove duplicate car data
 def clean_car_data():
     car_df = pd.read_csv("car_data.csv")
-    car_df.columns = [col.split(" ")[0] for col in car_df.columns]  # Remove spaces
+    car_df.columns = [col.split(" ")[0] for col in car_df.columns]  
     car_df.columns = car_df.columns.str.replace(r"[^\w\s]", "", regex=True).str.strip()
     
-    car_df = car_df.drop_duplicates(subset=["Make", "Model", "Production"])  # Remove duplicate cars
+    car_df = car_df.drop_duplicates(subset=["Make", "Model", "Production"])  
     return car_df
 
 # Batch insert for cars using execute_values (fast)
@@ -87,7 +87,7 @@ def process_consumer_data_for_batch():
 
     return data_to_insert
 
-# Batch insert for consumers using execute_values (fast)
+# Batch insert for consumers
 def insert_consumer_data_batch(data_list):
     conn = connect_db()
     cur = conn.cursor()
